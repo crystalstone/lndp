@@ -68,3 +68,5 @@ module.exports = {
 (3) mock 在middleware的中间件中，有个mockservice，用途是本地开发时，你可以自己mock接口。
 一般的规则是/ 会改成 _
 例如：一个接口GET/user/info   ==>  你要在mock文件夹里，创建个 GET_user_info.js的文件
+
+2. 其他基本的项目开发中...待续
