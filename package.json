@@ -1,6 +1,10 @@
 {
   "name": "lndp",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crystalstone/lndp.git"
+  },
   "description": "前端编译打包",
   "main": "index.js",
   "scripts": {
