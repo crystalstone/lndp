@@ -1,0 +1,15 @@
+<rt-require dependency="antd/lib/table/index" as="Table" />
+<rt-require dependency="antd/lib/pagination/index" as="Pagination" />
+
+<div class="order-list clearfix">
+    <Table columns={this.state.columns}
+    dataSource={this.props.orderObj.orderList}
+    pagination={false}
+    bordered={true} />
+    <div className="total-item">共 {this.props.orderObj.orderList.length > 0 ? this.props.orderObj.totalCount : 0} 条</div>
+    <Pagination simple
+                current={this.props.filter.pageNo}
+    pageSize={this.props.filter.pageSize}
+    onChange={this.onPageChange.bind(this)}
+    total={this.props.orderObj.totalCount} />
+</div>

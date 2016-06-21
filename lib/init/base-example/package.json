@@ -1,0 +1,17 @@
+{
+  "name": "",
+  "version": "0.0.1",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "start": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "http-proxy": "^1.11.1",
+    "mockservice": "^0.1.14"
+  },
+  "dependencies": {
+  }
+}

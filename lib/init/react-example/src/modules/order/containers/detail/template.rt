@@ -1,0 +1,121 @@
+
+<rt-require dependency="antd/lib/table/index" as="Table" />
+<rt-require dependency="antd/lib/steps/index" as="Steps" />
+
+<div class="order-detail">
+    <div rt-if="this.state.isLoading == true">
+        正在请求数据....
+    </div>
+    <div class="order-detail-main-container row"
+         rt-if="this.state.isLoading == false">
+        <div class="header row">
+            <div class="typer col-4">
+                <div >租客</div>
+                <div>经纪人</div>
+            </div>
+            <div class="typer col-6">
+                <div style="min-height: 33px;">{this.state.data.agentOrderDetail.userName}</div>
+                <div>{this.state.data.agentName + "/" +this.state.data.agentNo}</div>
+            </div>
+            <div class="typer col-11">
+                <div>{this.state.data.agentOrderDetail.userPhone}</div>
+                <div>{this.state.data.agentMobile}</div>
+            </div>
+            <div class="typer col-3">
+                <div>{this.state.data.agentOrderDetail.agentOrderStatus
+                    == 1 ? "待确认" : this.state.data.agentOrderDetail.agentOrderStatus
+                    == 2 ? "待签约" : this.state.data.agentOrderDetail.agentOrderStatus
+                    == 3 ? "已签约" : this.state.data.agentOrderDetail.agentOrderStatus
+                    == 4 ? "已关闭" : this.state.data.agentOrderDetail.agentOrderStatus
+                    == 5 ? "正在派单" : '-'}</div>
+            </div>
+        </div>
+        <div class="steps row" rt-if="this.state.progress">
+            <div class="title col-24">订单进度</div>
+            <div>
+                <Steps direction="vertical">
+                    <Steps.Step rt-repeat="item in this.state.progress"
+                                status="progress"
+                        title="{item.trackTitle+': '+item.createTime}"
+                        description={item.trackContent} >
+                    </Steps.Step>
+                </Steps>
+            </div>
+        </div>
+        <div class="renter-info row">
+            <div class="title col-24">租客信息</div>
+            <div class="col-24">
+                <div class="row">
+                    <div class="col-12">
+                        <label class="label-title">看房时间:</label>
+                        <label>{this.state.data.agentOrderDetail.appointTimeStr}</label>
+                    </div>
+                    <div class="col-12">
+                        <label class="label-title">入住时间:</label>
+                        <label>{this.state.data.agentOrderDetail.planCheckInStr}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-24">
+                        <label class="label-title">约看房源:</label>
+                        <div class="ant-tag"
+                             rt-repeat="houseItem in this.state.data.agentOrderDetail.houseList">
+                            <a target="_blank"
+                               href="#/house/show?productId={houseItem.productId}&cityId={houseItem.cityId}">{houseItem.houseSourceCode}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-24">
+                        <label class="label-title">租客备注:</label>
+                        <label>{this.state.data.agentOrderDetail.userRemark}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="order-check">
+            <div class="title col-24">订单跟进</div>
+            <div class="col-24">
+                <div class="row">
+                    <div class="col-12">
+                        <label class="label-title">看房时间:</label>
+                        <label>{this.state.data.agentOrderDetail.appointTimeStr}</label>
+                    </div>
+                    <div class="col-12">
+                        <label class="label-title">入住时间:</label>
+                        <label>{this.state.data.agentOrderDetail.planCheckInStr}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-24">
+                        <label class="label-title">预约地点:</label>
+                        <label>{this.state.data.agentOrderDetail.appointLocation || '-'}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-24" rt-if="this.state.data.agentOrderDetail.houseList">
+                        <Table columns={this.state.columns}
+                        dataSource={this.state.data.agentOrderDetail.houseList}
+                        pagination={false}
+                        bordered={true} />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-24">
+                        <label class="label-title">订单备注:</label>
+                        <label>{this.state.data.agentOrderDetail.orderRemark
+                            ? this.state.data.agentOrderDetail.orderRemark : '暂无'
+                            }</label>
+                    </div>
+                    <div class="col-24" rt-if="this.state.orderStep">
+                        <label class="label-title">订单具体信息:</label>
+                        <Table columns={this.state.orderStepColumns}
+                        dataSource={this.state.orderStep}
+                        pagination={false}
+                        bordered={true} />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

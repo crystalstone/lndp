@@ -1,0 +1,22 @@
+{
+  "name": "lndp",
+  "version": "0.0.1",
+  "description": "前端编译打包",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "bin": {
+    "lndp": "./bin/lndp"
+  },
+  "author": "wangshiying",
+  "license": "ISC",
+  "dependencies": {
+    "amd-optimize": "^0.6.1",
+    "colors": "^1.1.2",
+    "commander": "^2.9.0",
+    "express": "^4.13.4",
+    "gulp": "^3.9.1",
+    "requirejs": "^2.2.0"
+  }
+}

@@ -1,0 +1,87 @@
+<rt-require dependency="antd/lib/select/index" as="Select" />
+
+<div class="order-filter clearfix">
+    <div class="filter-row row ">
+        <div class="ant-form-item col-6">
+            <label>所属城市</label>
+            <Select
+                style={{width:150}}
+                data-field="cityId"
+                reactObj={this}
+                value="{this.state.filter.filter.cityId}"
+                onChange={this.changeSelectFilter}>
+                    <Select.Option rt-repeat="cityItem in this.state.cityList"
+                                   value={cityItem.cityId}>{cityItem.name}</Select.Option>
+            </Select>
+        </div>
+        <div class="ant-form-item col-6">
+            <label>客户</label>
+            <input type="text"
+                   class="ant-input"
+                   data-field="cus"
+                   value="{this.state.filter.filter.userName || this.state.filter.filter.userPhone || ''}"
+                   onChange="{this.changeInputFilter.bind(this)}"/>
+        </div>
+        <div class="ant-form-item col-6">
+            <label>客户类型</label>
+            <Select
+                style={{width:150}}
+                data-field="userType"
+                reactObj={this}
+                placeholder="请选择" value="{this.state.filter.filter.userType || -1}"
+                onChange={this.changeSelectFilter}>
+                <Select.Option  value={-1} key={-1}>请选择</Select.Option>
+                <Select.Option  value={1} key={1}>线上</Select.Option>
+                <Select.Option  value={2} key={2}>线下</Select.Option>
+            </Select>
+        </div>
+        <div class="ant-form-item col-6">
+            <label>房源编号</label>
+            <input type="text"
+                   class="ant-input"
+                   data-field="houseSourceCode"
+                   value="{this.state.filter.filter.houseSourceCode || ''}"
+                   onChange="{this.changeInputFilter.bind(this)}"/>
+        </div>
+    </div>
+    <div class="filter-row row">
+        <div class="ant-form-item col-6">
+            <label>经纪人</label>
+            <input type="text"
+                   class="ant-input"
+                   data-field="agent"
+                   value="{this.state.filter.filter.agentPhone || this.state.filter.filter.agentName || this.state.filter.filter.agentNo || ''}"
+                   onChange="{this.changeInputFilter.bind(this)}"/>
+        </div>
+        <div class="ant-form-item col-6">
+            <label>部门名称</label>
+            <input type="text"
+                   class="ant-input"
+                   data-field="deptName"
+                   value="{this.state.filter.filter.deptName || ''}"
+                   onChange="{this.changeInputFilter.bind(this)}"/>
+        </div>
+        <div class="ant-form-item col-6">
+            <label>状态</label>
+            <Select
+                style={{width:150}}
+                data-field="status"
+                reactObj={this}
+                placeholder="请选择" value="{this.state.filter.filter.status || -1}"
+                onChange={this.changeSelectFilter}>
+                    <Select.Option  value={-1} key={-1}>请选择</Select.Option>
+                    <Select.Option  value={1} key={1}>待确认</Select.Option>
+                    <Select.Option  value={2} key={2}>待签约</Select.Option>
+                    <Select.Option  value={3} key={3}>已签约</Select.Option>
+                    <Select.Option  value={4} key={4}>已关闭</Select.Option>
+                    <Select.Option  value={5} key={5}>正在派单</Select.Option>
+                    <Select.Option  value={6} key={6}>暂缓订单</Select.Option>
+            </Select>
+        </div>
+        <div class="ant-form-item col-6">
+            <button
+                class="ant-btn ant-btn-primary {this.state.filter.filter && this.state.filter.filter.cityId ? '' : 'disabled'}"
+                onClick="{this.changeFilter.bind(this)}">查询</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<rt-require dependency="react-router/lib/index" as="ReactRouter" />
+
+<div class="menu">
+    <div class="menu-item"
+         rt-repeat="menuItem in this.props.menuList"
+         level={menuItemIndex}
+         key={menuItem.menukey}
+         >
+         <ReactRouter.Link
+             class="sub-menu-item"
+             to={menuItem.menuHash}>
+             {menuItem.menuName}
+         </ReactRouter.Link>
+    </div>
+</div>
