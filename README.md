@@ -9,9 +9,8 @@ npm i -g lndp 或者 cnpm i -g lndp
 
 a. 初始化项目：
 
-mkdir test
-cd test
-lndp init react // 初始化react类型的项目
+mkdir test && cd test && lndp init react // 初始化react类型的项目
+
 npm i // 一定要执行这句话，安装依赖
 
 (帮你生成一个react-router  +  redux)的例子，
